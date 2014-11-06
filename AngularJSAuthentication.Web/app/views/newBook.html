@@ -1,0 +1,22 @@
+﻿<form class="form-login" role="form">
+	<div class="row">
+		<div class="col-md-4">
+			&nbsp;
+		</div>
+
+		<div class="col-md-4">
+			<h2 class="form-heading">Create Book</h2>
+			<input type="text" class="form-control" placeholder="Title" data-ng-model="book.title" required autofocus>
+			<input type="text" class="form-control" placeholder="Author" data-ng-model="book.author" required>
+			<input type="text" class="form-control" placeholder="ISBN" data-ng-model="book.isbn" required>
+			<button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="create()">Create</button>
+			<div data-ng-hide="message == ''" class="alert alert-danger">
+				{{message}}
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			&nbsp;
+		</div>
+	</div>
+</form>
