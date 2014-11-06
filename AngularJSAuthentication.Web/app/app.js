@@ -29,7 +29,8 @@ app.config(function ($routeProvider) {
 	$routeProvider.otherwise({ redirectTo: "/home" });
 });
 
-var serviceBase = 'http://localhost:58114/';
+//var serviceBase = 'http://localhost:58114/';
+var serviceBase = 'http://centricconnectdev.azurewebsites.net//';
 app.constant('ngAuthSettings', {
 	apiServiceBaseUri: serviceBase,
 	clientId: 'ngAuthApp'
