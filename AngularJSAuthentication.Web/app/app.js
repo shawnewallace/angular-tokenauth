@@ -25,12 +25,22 @@ app.config(function ($routeProvider) {
 		controller: "booksController",
 		templateUrl: "/app/views/newBook.html"
 	});
+	
+	$routeProvider.when("/contacts", {
+		controller: "contactsController",
+		templateUrl: "/app/views/contacts.html"
+	});
+	
+	$routeProvider.when("/profile", {
+		controller: "profileController",
+		templateUrl: "/app/views/profile.html"
+	});
 
 	$routeProvider.otherwise({ redirectTo: "/home" });
 });
 
 //var serviceBase = 'http://localhost:58114/';
-var serviceBase = 'http://centricconnectdev.azurewebsites.net//';
+var serviceBase = 'http://centricconnectdev.azurewebsites.net/';
 app.constant('ngAuthSettings', {
 	apiServiceBaseUri: serviceBase,
 	clientId: 'ngAuthApp'

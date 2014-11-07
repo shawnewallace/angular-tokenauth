@@ -6,7 +6,8 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
 	var _authentication = {
 		isAuth: false,
-		userName: ""
+		userName: "",
+		profile: ""
 	};
 
 	var _saveRegistration = function (registration) {
@@ -26,7 +27,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 		var deferred = $q.defer();
 
 		$http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-
 			localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
 
 			_authentication.isAuth = true;
@@ -39,6 +39,14 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 			deferred.reject(err);
 		});
 
+		$http.get(serviceBase + "/api/profile").success(function (response) {
+			localStorageService.set('profile', response.data );
+			_authentication.profile = response.data;
+		}).error(function (err, status) {
+			_logOut();
+			deferred.reject(err);
+		});
+
 		return deferred.promise;
 
 	};
@@ -46,18 +54,21 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 	var _logOut = function () {
 
 		localStorageService.remove('authorizationData');
+		localStorageService.remove('profile');
 
 		_authentication.isAuth = false;
 		_authentication.userName = "";
-
+		_authentication.profile = "";
 	};
 
 	var _fillAuthData = function() {
 
 		var authData = localStorageService.get('authorizationData');
+		var profile = localStorageService.get('profile');
 		if (authData) {
 			_authentication.isAuth = true;
 			_authentication.userName = authData.userName;
+			_authentication.profile = profile;
 		}
 
 	};

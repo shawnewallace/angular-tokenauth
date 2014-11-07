@@ -1,0 +1,31 @@
+﻿<div class="row">
+	<div class="col-md-2">&nbsp;</div>
+	<div class="col-md-8">
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th colspan="2">Name</th>
+					<th>Title</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="contact in contacts | orderBy:predicate:true">
+					<td>
+						{{ contact.first_name }}
+					</td>
+					<td>
+						{{ contact.last_name }}
+					</td>
+					<td>
+						{{ contact.unit }}
+					</td>
+					<td>
+						{{ contact.email }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-md-2">&nbsp;</div>
+</div>
